@@ -5,8 +5,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.sh.chat.domain.User;
 
 public class LoginController {
 
@@ -22,9 +25,13 @@ public class LoginController {
 	
 	//登录逻辑
 	@RequestMapping(value="login",method=RequestMethod.POST)
-	public String login(HttpServletRequest request,HttpServletResponse response){
+	public String login(HttpServletRequest request,HttpServletResponse response,
+			@RequestBody User user){
 		logger.info("Execute login");
 		
-		return "main";
+		String username = user.getUsername();
+		String password = user.getPassword();
+		
+		return "success";
 	}
 }
